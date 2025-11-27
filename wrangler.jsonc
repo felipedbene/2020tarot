@@ -2,6 +2,7 @@
   "name": "llm-tarot-reader",
   "compatibility_date": "2025-11-27",
   "assets": {
-    "directory": "."
+    "directory": ".",
+    "binding": "ASSETS"
   }
 }

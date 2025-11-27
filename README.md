@@ -1,53 +1,96 @@
-# LLM Tarot Reader
+# Quick Deployment Steps
 
-A web-based tarot card reader that provides personalized 7-day evolution readings using AI interpretation.
+## What You Need to Do
 
-## Description
+### Step 1: Copy Files to Your Project
 
-This application draws a 3-card tarot spread focused on personal growth and evolution over the next 7 days. It reveals your current state, what to focus on for growth, and potential outcomes. The reading is generated using the DeepSeek AI API for insightful and meaningful interpretations.
+Download these files from the outputs and copy them to your project:
 
-## Features
+**NEW FILE:**
+- `functions/api/tarot.js` → Create this directory structure and add the file
 
-- Interactive 3-card tarot spread
-- AI-powered reading generation
-- Secure API key storage (localStorage)
-- Responsive web design
-- Real-time card drawing and interpretation
+**REPLACE THESE:**
+- `index.html` → Replace your existing one
+- `script.js` → Replace your existing one
+- `wrangler.jsonc` → Replace your existing one
 
-## How to Use
+**KEEP AS IS:**
+- `style.css` → No changes needed
+- `README.md` → No changes needed
+- `.gitignore` → No changes needed
 
-1. Clone or download the project files
-2. Open `index.html` in your web browser
-3. Enter your DeepSeek API key (get one from [DeepSeek Platform](https://platform.deepseek.com/))
-4. Click "Draw Cards" to generate your reading
-5. Read the AI-generated interpretation below the cards
+### Step 2: Your Project Structure Should Look Like This
 
-## Requirements
+```
+your-project/
+├── functions/           ← NEW FOLDER
+│   └── api/
+│       └── tarot.js    ← NEW FILE
+├── .gitignore
+├── README.md
+├── index.html          ← UPDATED
+├── script.js           ← UPDATED
+├── style.css           ← UNCHANGED
+└── wrangler.jsonc      ← UPDATED
+```
 
-- A web browser (Chrome, Firefox, Safari, etc.)
-- A valid DeepSeek API key
+### Step 3: Deploy to Git
 
-## Technologies Used
+```bash
+# From your project directory:
+git add .
+git commit -m "Add secure API proxy with Pages Functions"
+git push
+```
 
-- HTML5
-- CSS3
-- JavaScript (ES6+)
-- DeepSeek API
+### Step 4: Wait for Deployment
 
-## Card Positions
+- Go to https://dash.cloudflare.com
+- Navigate to Workers & Pages → 2020tarot
+- Watch the deployment complete (should take 30-60 seconds)
 
-- **Current State**: Represents your present situation
-- **Focus for Growth**: Areas to concentrate on for personal development
-- **Potential in 7 Days**: Possible outcomes and future trajectory
+### Step 5: Add Your API Key
 
-## Privacy Note
+Once deployment finishes:
 
-Your API key is stored locally in your browser's localStorage and is only used to communicate with the DeepSeek API. No personal data is collected or stored on any server.
+1. In the Cloudflare dashboard, go to your project (2020tarot)
+2. Click **Settings** → **Variables and Secrets**
+3. Click **Add variable**
+4. Enter:
+   - **Variable name:** `DEEPSEEK_API_KEY`
+   - **Value:** Your DeepSeek API key
+   - **Type:** Text (not Secret for now, you can change this later)
+5. Select **Production** environment
+6. Click **Save**
 
-## Contributing
+### Step 6: Test Your Site
 
-Feel free to fork and improve the project. Pull requests are welcome!
+1. Visit: https://2020tarot.felipe-debene.workers.dev/
+2. Click "Draw Cards" (no API key input needed!)
+3. You should see your tarot reading appear
 
-## License
+## Troubleshooting
 
-This project is open source. Please credit the original author if you use or modify the code.
+**If you still can't add environment variables:**
+- Make sure the deployment finished completely
+- Check that the `functions` folder is present in your Git repo
+- Try refreshing the Cloudflare dashboard
+
+**If you get API errors:**
+- Verify your `DEEPSEEK_API_KEY` variable is set correctly
+- Check the browser console (F12) for error messages
+- Look at the Functions logs in Cloudflare dashboard
+
+**If cards don't appear:**
+- Clear your browser cache
+- Try in an incognito/private window
+
+## What Changed?
+
+**Before:** API key stored in browser, frontend called DeepSeek directly
+**After:** API key stored securely in Cloudflare, frontend calls your proxy
+
+This means:
+✅ Your API key is never exposed to users
+✅ You control all API usage
+✅ More secure and professional setup
