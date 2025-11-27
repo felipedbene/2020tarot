@@ -1,0 +1,89 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+h1 {
+    margin-bottom: 30px;
+}
+
+#drawButton {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 30px;
+}
+
+#drawButton:hover {
+    background-color: #2980b9;
+}
+
+.cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.card {
+    width: 150px;
+    height: 250px;
+    background-color: #34495e;
+    border: 2px solid #ecf0f1;
+    border-radius: 10px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    padding: 10px;
+}
+
+.reading {
+    background-color: #34495e;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+    text-align: left;
+}
+.spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 2s linear infinite;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+.reading strong { font-weight: bold; color: #ecf0f1; }
+.reading em { font-style: italic; color: #bdc3c7; }
+.reading br { display: block; margin: 5px 0; }
+.reading h3 { font-size: 1.2em; margin: 10px 0 5px 0; color: #ecf0f1; }
+.reading li { margin-left: 20px; color: #bdc3c7; }
+.reading li::before { content: "• "; color: #ecf0f1; }
+.reading h4 { font-size: 1.1em; margin: 8px 0 4px 0; color: #ecf0f1; font-weight: bold; }
+.reading hr { border: 0; height: 1px; background: #34495e; margin: 15px 0; }
+.reading h1 { font-size: 1.5em; margin: 15px 0 10px 0; color: #ecf0f1; font-weight: bold; }
+.reading h2 { font-size: 1.3em; margin: 12px 0 8px 0; color: #ecf0f1; font-weight: bold; }
+.reading h3 { font-size: 1.2em; margin: 10px 0 5px 0; color: #ecf0f1; }
+.reading h4 { font-size: 1.1em; margin: 8px 0 4px 0; color: #ecf0f1; font-weight: bold; }

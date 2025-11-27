@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLM Tarot Reader</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>7-Day Evolution Tarot Reading</h1>
+    <p>This 3-card spread provides guidance on your personal evolution over the next 7 days. It reveals your current state, what to focus on for growth, and the potential outcomes.</p>
+        <input type="password" id="apiKey" placeholder="Enter DeepSeek API Key" required>
+        <button id="drawButton">Draw Cards</button>
+        <div id="cardsContainer" class="cards"></div>
+        <div id="readingContainer" class="reading"><div id="spinner" style="display:none;"><div class="spinner"></div> Generating reading...</div></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
