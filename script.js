@@ -53,22 +53,14 @@ function renderMarkdown(text) {
         .replace(/\n/g, '<br>');
 }
 
-// Function to get reading from LLM
+// Function to get reading from LLM via proxy
 async function getReading(cards) {
-    const apiKey = document.getElementById('apiKey').value;
-    if (!apiKey) {
-        alert('Please enter your DeepSeek API Key');
-        return;
-    }
-    localStorage.setItem('deepseek_api_key', apiKey);
-
     const prompt = `Provide a concise and insightful tarot reading for the following 7-day personal evolution spread: ${cards.map(c => `${c.position}: ${c.name}`).join(', ')}. Explain each card's meaning in its position, how they interact, and key priorities for growth over the next 7 days. Use markdown formatting for clarity, including headers (###, ####), bullet points (-), and separators (---). Avoid greetings, introductions, or unnecessary fluff.`;
 
-    const response = await fetch('https://api.deepseek.com/v1/chat/completions', {
+    const response = await fetch('/api/tarot', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${apiKey}`
         },
         body: JSON.stringify({
             model: 'deepseek-chat',
@@ -84,14 +76,6 @@ async function getReading(cards) {
     const data = await response.json();
     return data.choices[0].message.content;
 }
-
-// Load API key from localStorage on page load
-window.addEventListener('load', () => {
-    const savedKey = localStorage.getItem('deepseek_api_key');
-    if (savedKey) {
-        document.getElementById('apiKey').value = savedKey;
-    }
-});
 
 // Event listener for button
 document.getElementById('drawButton').addEventListener('click', async () => {
